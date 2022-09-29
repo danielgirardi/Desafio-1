@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+		
 	public String name;
 	public Double price;
 	public Integer quantity;

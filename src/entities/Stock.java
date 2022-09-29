@@ -6,11 +6,18 @@ import java.util.List;
 public class Stock  {
 
 	public List<Product> products = new ArrayList<Product>();
+	public List<ProductMostruario> productsMostruario = new ArrayList<ProductMostruario>();
 		
 	public void addProduct (Integer id, String name, Double price, Integer quantity, String category) {
-		Product product = new Product(id, name, price, quantity, category);
+		Product product = new Product (id, name, price, quantity, category);
 		
 		products.add(product);
+	}
+	
+	public void addProductMostruario (String codigo, Long codigoBarra, String serie, String name, String description, String category, Double price, Double tax, Integer manufacturingDate, Integer validationDate, String color, String material) {
+		ProductMostruario productMostruario = new ProductMostruario();
+				
+		productsMostruario.add(productMostruario);
 	}
 	
 	public void editProducts (Integer id, String name, Double price, Integer quantity, String category) {
@@ -38,7 +45,6 @@ public class Stock  {
 	public List<Product> getProducts() { 
 		return products;
 	}
-	
+	}	
 	
 		
-}

@@ -5,8 +5,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
@@ -27,7 +25,7 @@ public class Program{
 		boolean exit = false;
 		
 		program.readDocument(); 
-		program.readDocumentMostruario();
+		
 		
 		do {
 			System.out.println("Entre as opções abaixo, escolha apenas uma: ");
@@ -58,7 +56,6 @@ public class Program{
 				case 4:
 					System.out.println("Um momento, processando o mostruário!");
 					program.readDocumentMostruario();
-					//chamar mostruário
 					break;
 					
 				case 5:
@@ -165,24 +162,20 @@ public class Program{
 				while (line != null) { 
 					
 					String[] vect = line.split(",");
-					String codigo = vect[0]; //tem letras e números, qual TIPO eu coloco em código
-					Integer codigoBarra = Integer.parseInt(vect[1]);
-					Integer serie = Integer.parseInt(vect[2]);
+					String codigo = vect[0]; 
+					Long codigoBarra = Long.parseLong(vect[1]);
+					String serie = (vect[2]);
 					String name = vect[3];
 					String description = vect[4];
 					String category = vect[5];
-					Double price = Double.parseDouble(vect[6]);//valor bruto (no arquivo consta como valor bruto)
+					Double price = Double.parseDouble(vect[6]);
 					Double tax = Double.parseDouble(vect[7]);
 					Integer manufacturingDate = Integer.parseInt(vect[8]);
 					Integer validationDate = Integer.parseInt(vect[9]);
 					String color = vect[10];
 					String material = vect[11];
-					//não consta quantidade no estoque   Integer qte = Integer.parseInt(vect[4]); 
 					
-					
-					
-							//criar novo método para receber esses parâmetros	
-					this.stock.addProduct(codigo, codigoBarra, serie, name, description, category, price, tax, manufacturingDate, validationDate, color, material); //aqui preciso alterar os parâmetros (acho eu)
+					this.stock.addProductMostruario(codigo, codigoBarra, serie, name, description, category, price, tax, manufacturingDate, validationDate, color, material);
 					
 					line = br.readLine();
 				}
@@ -192,8 +185,6 @@ public class Program{
 			}
 			
 		}
-		
-	}
 	
 	public void writeDocument () {
 		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.txt";	
