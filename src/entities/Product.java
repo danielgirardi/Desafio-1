@@ -65,12 +65,12 @@ public class Product implements Serializable {
 	}
 
 	@Override
-	public int hashCode() { //ainda não usamos, não sei se iremos usar
+	public int hashCode() { 
 		return Objects.hash(id);
 	}
 
 	@Override
-	public boolean equals(Object obj) { //não entendi
+	public boolean equals(Object obj) { 
 		if (this == obj)
 			return true;
 		if (obj == null)

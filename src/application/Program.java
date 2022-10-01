@@ -5,9 +5,18 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 
 import entities.Product;
 import entities.Stock;
@@ -16,9 +25,10 @@ public class Program{
 	
 	private Stock stock = new Stock();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Locale.setDefault(Locale.US);	
-		Scanner sc = new Scanner(System.in);	
+		Scanner sc = new Scanner(System.in);
+		LocalDate dataAtual = LocalDate.now();
 		Program program = new Program();
 		
 		int answer = 0;
@@ -120,77 +130,66 @@ public class Program{
 			stock.removeProduct(id);
 		}
 	}
-		
-	public void readDocument() {
 	
+	
+	public void readDocument() throws IOException {
+		
 		Locale.setDefault(Locale.US);
-		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.txt"; 
+		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.csv";
 		
-		
-		try (BufferedReader br = new BufferedReader (new FileReader(path))) {
+		Reader reader = Files.newBufferedReader(Paths.get(path));
+		CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
+
+		List<String[]> productList = csvReader.readAll();
+		for (String[] product : productList) {
 			
-			String line = br.readLine();
-			line = br.readLine();
-			while (line != null) { 
-				String[] vect = line.split(",");
-				Integer id = Integer.parseInt(vect[0]);
-				String name = vect[1];
-				String category = vect[2];
-				Double price = Double.parseDouble(vect[3]);
-				Integer qte = Integer.parseInt(vect[4]);
-							
-				this.stock.addProduct(id, name, price, qte, category); 
-				
-				line = br.readLine();
-			}
-	}	
-		catch (IOException e) {
-			System.out.println("Erros: " + e.getMessage());
+			Integer id = Integer.parseInt(product[0]);
+			String name = product[1];
+			String category = product[2];
+			Double price = Double.parseDouble(product[3]);
+			Integer qte = Integer.parseInt(product[4]);
+						
+			this.stock.addProduct(id, name, price, qte, category); 
 		}
 		
 	}
-	
-	public void readDocumentMostruario() {//iniciei aqui a leitura do mostruario_fabrica
+			
+	public void readDocumentMostruario() throws IOException {//iniciei aqui a leitura do mostruario_fabrica
 		
 		Locale.setDefault(Locale.US);
-		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\mostruario_fabrica.txt";
-		
-	try (BufferedReader br = new BufferedReader (new FileReader(path))) {
-				
-				String line = br.readLine();
-				line = br.readLine();
-				while (line != null) { 
-					
-					String[] vect = line.split(",");
-					String codigo = vect[0]; 
-					Long codigoBarra = Long.parseLong(vect[1]);
-					String serie = (vect[2]);
-					String name = vect[3];
-					String description = vect[4];
-					String category = vect[5];
-					Double price = Double.parseDouble(vect[6]);
-					Double tax = Double.parseDouble(vect[7]);
-					Integer manufacturingDate = Integer.parseInt(vect[8]);
-					Integer validationDate = Integer.parseInt(vect[9]);
-					String color = vect[10];
-					String material = vect[11];
-					
-					this.stock.addProductMostruario(codigo, codigoBarra, serie, name, description, category, price, tax, manufacturingDate, validationDate, color, material);
-					
-					line = br.readLine();
-				}
-		}	
-			catch (IOException e) {
-				System.out.println("Erros: " + e.getMessage());
-			}
-			
+		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\mostruario_fabrica.csv";
+
+		Reader reader = Files.newBufferedReader(Paths.get(path));
+		CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
+
+		List<String[]> mostruarioList = csvReader.readAll();
+		for (String[] product : mostruarioList) {
+
+			String codigo = product[0]; 
+			Long codigoBarra = Long.parseLong(product[1]);
+			String serie = (product[2]);
+			String name = product[3];
+			String description = product[4];
+			String category = product[5];
+			Double price = Double.parseDouble(product[6].replace(",", "."));
+			Double tax = Double.parseDouble(product[7].replace(",", "."));
+			String manufacturingDate = product[8]; 
+			String validationDate = product[9];
+			String color = product[10];
+			String material = product[11];
+
+			this.stock.addProductMostruario(codigo, codigoBarra, serie, name, description, category, price, tax, manufacturingDate, validationDate, color, material);
 		}
+
+	}
+	
 	
 	public void writeDocument () {
 		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.txt";	
 		
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))){ 
-			
+		try { 
+			BufferedWriter bw = new BufferedWriter(new FileWriter(path));
+					
 			String header = new String ("Id,Nome,Categoria,Preco,Quantidade");
 			bw.write(header);
 			bw.newLine();

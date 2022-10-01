@@ -1,5 +1,0 @@
-Id,Nome,Categoria,Preco,Quantidade
-13535,cafe,alimentos,8.99,2
-68312,detergente,limpeza,2.49,5
-13548,bolacha,alimento,2.5,3
-21455,almofada,objetos,12.99,20
