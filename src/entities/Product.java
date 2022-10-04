@@ -12,12 +12,12 @@ public class Product implements Serializable {
 	public Double price;
 	public Integer quantity;
 	public String category;
-	public Integer id;
+	public long id;
 	 
 	public Product () {
 	}
 
-	public Product(int id, String name, double price, int quantity, String category) {
+	public Product(long id, String name, double price, int quantity, String category) {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
@@ -53,11 +53,11 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 	
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -81,12 +81,5 @@ public class Product implements Serializable {
 			return false;
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
-	}
-	//devo incrementar quantidade
-	public void addProduct (Integer id, String name, Double price, Integer quantity, String category) {
-		public List<Product> products = new ArrayList<Product>();
-		//for ()
-		
-		return (id, name, price, quantity, category);
 	}
 }

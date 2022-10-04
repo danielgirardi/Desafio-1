@@ -1,6 +1,7 @@
 package application;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
@@ -102,7 +103,7 @@ public class Program{
 		stock.printProducts();
 		System.out.println();
 		System.out.println("Qual o ID do produto que deseja editar? ");
-		int id = sc.nextInt();							
+		long id = sc.nextLong();							
 		System.out.println("Digite o nome do produto ");
 		String name = sc.next();
 		System.out.println("Preço do produto: ");
@@ -134,13 +135,14 @@ public class Program{
 		Locale.setDefault(Locale.US);
 		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.csv";
 		
-		Reader reader = Files.newBufferedReader(Paths.get(path));
-		CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
+		//Reader reader = Files.newBufferedReader(Paths.get(path));
+		FileReader fileReader = new FileReader(path);
+		CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
 
 		List<String[]> productList = csvReader.readAll();
 		for (String[] product : productList) {
 			
-			Integer id = Integer.parseInt(product[0]);
+			long id = Long.parseLong(product[0]);
 			String name = product[1];
 			String category = product[2];
 			Double price = Double.parseDouble(product[3]);

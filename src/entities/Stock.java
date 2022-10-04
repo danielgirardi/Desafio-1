@@ -11,7 +11,7 @@ public class Stock  {
 	public List<Product> products = new ArrayList<Product>();
 	public List<ProductMostruario> productsMostruario = new ArrayList<ProductMostruario>();
 		
-	public void addProduct (Integer id, String name, Double price, Integer quantity, String category) {
+	public void addProduct (long id, String name, Double price, Integer quantity, String category) {
 		Product product = new Product (id, name, price, quantity, category);
 		
 		products.add(product);
@@ -25,13 +25,13 @@ public class Stock  {
 		productsMostruario.add(productMostruario);
 	}
 	
-	public void editProducts (Integer id, String name, Double price, Integer quantity, String category) {
+	public void editProducts (long id, String name, Double price, Integer quantity, String category) {
 		removeProduct(id);
 		
 		addProduct(id, name, price, quantity, category);
 					
 	}
-	public void removeProduct(Integer id) {
+	public void removeProduct(long id) {
 		Product product = new Product();
 		product.setId(id);
 		
@@ -51,8 +51,7 @@ public class Stock  {
 	
 		for (ProductMostruario productMostruario : productsMostruario) {
 		
-			Random gerador = new Random();
-			int id = gerador.nextInt();
+			long id = productMostruario.getCodigoBarra();
 			String name = productMostruario.getName();
 			double price = this.totalPrice(productMostruario.getPrice(), productMostruario.getTax());  
 			Integer quantity = 1;
