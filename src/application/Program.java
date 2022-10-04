@@ -1,15 +1,11 @@
 package application;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -17,6 +13,8 @@ import java.util.Scanner;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+// rever com a De import com.application.csv.model.Employee; //alteração (writer documento CSV)
+import com.opencsv.CSVWriter; //alteração (writer documento CSV)
 
 import entities.Product;
 import entities.Stock;
@@ -28,7 +26,6 @@ public class Program{
 	public static void main(String[] args) throws IOException {
 		Locale.setDefault(Locale.US);	
 		Scanner sc = new Scanner(System.in);
-		LocalDate dataAtual = LocalDate.now();
 		Program program = new Program();
 		
 		int answer = 0;
@@ -83,6 +80,7 @@ public class Program{
 		sc.close();
 	}
 	
+
 	private void addInStock(Scanner sc) {
 		Random gerador = new Random();
 		int id = gerador.nextInt();
@@ -131,7 +129,6 @@ public class Program{
 		}
 	}
 	
-	
 	public void readDocument() throws IOException {
 		
 		Locale.setDefault(Locale.US);
@@ -154,7 +151,7 @@ public class Program{
 		
 	}
 			
-	public void readDocumentMostruario() throws IOException {//iniciei aqui a leitura do mostruario_fabrica
+	public void readDocumentMostruario() throws IOException {
 		
 		Locale.setDefault(Locale.US);
 		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\mostruario_fabrica.csv";
@@ -180,31 +177,38 @@ public class Program{
 
 			this.stock.addProductMostruario(codigo, codigoBarra, serie, name, description, category, price, tax, manufacturingDate, validationDate, color, material);
 		}
+		
+		stock.addProductfromMostruario();
 
 	}
 	
-	
-	public void writeDocument () {
-		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.txt";	
-		
-		try { 
-			BufferedWriter bw = new BufferedWriter(new FileWriter(path));
-					
-			String header = new String ("Id,Nome,Categoria,Preco,Quantidade");
-			bw.write(header);
-			bw.newLine();
+	public void writeDocument() { 
+
+		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.csv";
+
+		File file = new File(path);
+		try {
+			
+			FileWriter outputfile = new FileWriter(file);
+
+			CSVWriter writer = new CSVWriter(outputfile);
+
+			String[] header = { "Id", "Nome", "Categoria", "Preco", "Quantidade" };
+			writer.writeNext(header);
+
 			for (Product product : stock.getProducts()) {
-				bw.write(String.valueOf(product.getId()));
-				bw.write(",");
-				bw.write(product.getName());
-				bw.write(",");
-				bw.write(product.getCategory());
-				bw.write(",");
-				bw.write( String.valueOf(product.getPrice()));
-				bw.write(",");
-				bw.write(String.valueOf(product.getQuantity()));
-				bw.newLine();
+				String[] productparameters = new String[5];
+
+				productparameters[0] = String.valueOf(product.getId());
+				productparameters[1] = (product.getName()); 
+				productparameters[2] = (product.getCategory());
+				productparameters[3] = (String.valueOf(product.getPrice()));
+				productparameters[4] = (String.valueOf(product.getQuantity()));
+
+				writer.writeNext(productparameters);
 			}
+
+			writer.close();
 		}
 		catch (IOException e) {
 			e.printStackTrace();

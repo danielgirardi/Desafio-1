@@ -1,4 +1,8 @@
-"Nome","Categoria","Preco","Quantidade"
-"cafe","alimentos","8,99","20"
-"detergente","limpeza","2,49","30"
-"bolacha","alimentos","4,99","30
+"Id","Nome","Categoria","Preco","Quantidade"
+"599765482","Teclado Gamer","ESCRITÓRIO","236.84","1"
+"2117305727","Livro Design Patterns","ESCRITÓRIO","183.26","1"
+"8962862","Café Solúvel South","ALIMENTAÇÃO E BEBIDAS","15.07","1"
+"-532182090","Camiseta South","VESTUÁRIO","58.71","1"
+"1638004797","Cerveja Foguete South","ALIMENTAÇÃO E BEBIDAS","45.99","1"
+"1839408932","Máscara PFF2 South","HIGIENE E SAÚDE","15.26","1"
+"-1893298572","Patinete Elétrico South","MEIO DE TRANSPORTE","524.8","1"

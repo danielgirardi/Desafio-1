@@ -1,6 +1,8 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Product implements Serializable {
@@ -80,7 +82,11 @@ public class Product implements Serializable {
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
+	//devo incrementar quantidade
+	public void addProduct (Integer id, String name, Double price, Integer quantity, String category) {
+		public List<Product> products = new ArrayList<Product>();
+		//for ()
+		
+		return (id, name, price, quantity, category);
+	}
 }

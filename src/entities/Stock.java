@@ -1,7 +1,10 @@
 package entities;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Stock  {
 
@@ -43,10 +46,38 @@ public class Stock  {
 			System.out.println(product.toString());
 		}
 	}
+	
+	public void addProductfromMostruario() {
+	
+		for (ProductMostruario productMostruario : productsMostruario) {
+		
+			Random gerador = new Random();
+			int id = gerador.nextInt();
+			String name = productMostruario.getName();
+			double price = this.totalPrice(productMostruario.getPrice(), productMostruario.getTax());  
+			Integer quantity = 1;
+			String categoria = productMostruario.getCategory();
+					
+			this.addProduct(id, name, price, quantity, categoria);
+			
+			
+		}
+		System.out.println("Os produtos foram importados com sucesso para o estoque!");
+	}
+	
+	public double totalPrice (double price, double tax) { 
+		
+		double soma = (price + (price * tax / 100)) * 1.45;   
+		double monetaryValue = new BigDecimal(String.valueOf(soma)).setScale(2, RoundingMode.HALF_UP).doubleValue();
+		
+		return monetaryValue;
+	}
 
 	public List<Product> getProducts() { 
 		return products;
 	}
-	}	
+
+	
+}	
 	
 		
