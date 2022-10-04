@@ -51,13 +51,27 @@ public class Stock  {
 	
 		for (ProductMostruario productMostruario : productsMostruario) {
 		
-			long id = productMostruario.getCodigoBarra();
-			String name = productMostruario.getName();
-			double price = this.totalPrice(productMostruario.getPrice(), productMostruario.getTax());  
-			Integer quantity = 1;
-			String categoria = productMostruario.getCategory();
-					
-			this.addProduct(id, name, price, quantity, categoria);
+			Product product = new Product();
+			product.setId(productMostruario.getCodigoBarra());
+			
+			int indexNumber = products.indexOf(product);
+								
+			if (indexNumber == -1) { //se ñ existe na lista de produtos 1 elemento c/ este código de barra, add na lista
+			
+				long id = productMostruario.getCodigoBarra();
+				String name = productMostruario.getName();
+				double price = this.totalPrice(productMostruario.getPrice(), productMostruario.getTax());  
+				Integer quantity = 1;
+				String categoria = productMostruario.getCategory();
+						
+				this.addProduct(id, name, price, quantity, categoria);
+			}
+			//buscar o product na lista e incrementar a quantidade deste product (criar método p/ incrementar quantidade na classe product)
+			
+			else {
+				this.products.get(indexNumber).incrementQuantity();
+				
+			}
 			
 			
 		}
@@ -76,7 +90,6 @@ public class Stock  {
 		return products;
 	}
 
-	
 }	
 	
 		

@@ -14,8 +14,7 @@ import java.util.Scanner;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-// rever com a De import com.application.csv.model.Employee; //alteração (writer documento CSV)
-import com.opencsv.CSVWriter; //alteração (writer documento CSV)
+import com.opencsv.CSVWriter; 
 
 import entities.Product;
 import entities.Stock;
@@ -81,7 +80,6 @@ public class Program{
 		sc.close();
 	}
 	
-
 	private void addInStock(Scanner sc) {
 		Random gerador = new Random();
 		int id = gerador.nextInt();
@@ -135,7 +133,6 @@ public class Program{
 		Locale.setDefault(Locale.US);
 		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.csv";
 		
-		//Reader reader = Files.newBufferedReader(Paths.get(path));
 		FileReader fileReader = new FileReader(path);
 		CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
 
