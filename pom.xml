@@ -8,13 +8,11 @@
         <version>2.7.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
-    <groupId>br.com.impulsionar</groupId>
-    <artifactId>impulsionar</artifactId>
+    <groupId>br.com</groupId>
+    <artifactId>Desafio-1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>impulsionar</name>
-    <description>impulsionar</description>
-
+    <name>Desafio-1</name>
+    <description>Desafio-1</description>
     <properties>
         <java.version>11</java.version>
     </properties>

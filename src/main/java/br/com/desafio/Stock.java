@@ -1,10 +1,13 @@
-package entities;
+package br.com.desafio;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
+import br.com.desafio.Product;
+import br.com.desafio.ProductMostruario;
+
 
 public class Stock  {
 
@@ -27,7 +30,7 @@ public class Stock  {
 	
 	public void editProducts (long id, String name, Double price, Integer quantity, String category) {
 		removeProduct(id);
-		
+		//criar uma condiï¿½ï¿½o de sair quando quiser apï¿½s clicar na opï¿½ï¿½o para editar (nas demais tambï¿½m)
 		addProduct(id, name, price, quantity, category);
 					
 	}
@@ -56,7 +59,7 @@ public class Stock  {
 			
 			int indexNumber = products.indexOf(product);
 								
-			if (indexNumber == -1) { //se ñ existe na lista de produtos 1 elemento c/ este código de barra, add na lista
+			if (indexNumber == -1) { //se ï¿½ existe na lista de produtos 1 elemento c/ este cï¿½digo de barra, add na lista
 			
 				long id = productMostruario.getCodigoBarra();
 				String name = productMostruario.getName();
@@ -66,15 +69,14 @@ public class Stock  {
 						
 				this.addProduct(id, name, price, quantity, categoria);
 			}
-			//buscar o product na lista e incrementar a quantidade deste product (criar método p/ incrementar quantidade na classe product)
 			
 			else {
 				this.products.get(indexNumber).incrementQuantity();
 				
 			}
-			
-			
+						
 		}
+		
 		System.out.println("Os produtos foram importados com sucesso para o estoque!");
 	}
 	

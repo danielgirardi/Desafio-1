@@ -1,4 +1,4 @@
-package application;
+package br.com.desafio;
 
 import java.io.File;
 import java.io.FileReader;
@@ -14,10 +14,7 @@ import java.util.Scanner;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import com.opencsv.CSVWriter; 
-
-import entities.Product;
-import entities.Stock;
+import com.opencsv.CSVWriter;
 
 public class Program{
 	
@@ -35,11 +32,11 @@ public class Program{
 		
 		
 		do {
-			System.out.println("Entre as opÁıes abaixo, escolha apenas uma: ");
+			System.out.println("Entre as op√ß√µes abaixo, escolha apenas uma: ");
 			System.out.println("1) Adicionar novo produto");
 			System.out.println("2) Editar produto");
 			System.out.println("3) Remover produto");
-			System.out.println("4) Mostru·rio ");
+			System.out.println("4) Mostru√°rio ");
 			System.out.println("5) Sair");
 			
 			answer = sc.nextInt();
@@ -61,18 +58,18 @@ public class Program{
 					break;
 					
 				case 4:
-					System.out.println("Um momento, processando o mostru·rio!");
+					System.out.println("Um momento, processando o mostru√°rio!");
 					program.readDocumentMostruario();
 					break;
 					
 				case 5:
-					System.out.println("AtÈ a prÛxima, obrigado!");
+					System.out.println("At√© a pr√≥xima, obrigado!");
 					program.writeDocument();
 					exit = true;
 					break;
 					
 				default:
-					System.out.println("OpÁ„o inv·lida, digite novamente!");
+					System.out.println("Op√ß√£o inv√°lida, digite novamente!");
 					
 			}
 		} while (!exit); 
@@ -85,7 +82,7 @@ public class Program{
 		int id = gerador.nextInt();
 		System.out.println("Nome do produto: ");
 		String name = sc.next();
-		System.out.println("PreÁo do produto: ");
+		System.out.println("Pre√ßo do produto: ");
 		double price = sc.nextDouble();
 		System.out.println("Quantitdade do produto: ");
 		int quantity = sc.nextInt();
@@ -104,7 +101,7 @@ public class Program{
 		long id = sc.nextLong();							
 		System.out.println("Digite o nome do produto ");
 		String name = sc.next();
-		System.out.println("PreÁo do produto: ");
+		System.out.println("Pre√ßo do produto: ");
 		double price = sc.nextDouble();
 		System.out.println("Quantitdade do produto: ");
 		int quantity = sc.nextInt();
@@ -117,7 +114,7 @@ public class Program{
 	
 	private void removeProduct (Scanner sc) {
 		if ( stock.getProducts().size()==0) {
-			System.out.println("ImpossÌvel remover (lista vazia)");
+			System.out.println("Imposs√≠vel remover (lista vazia)");
 		} else {
 			stock.printProducts();
 			System.out.println();

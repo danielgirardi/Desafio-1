@@ -1,8 +1,6 @@
-package entities;
+package br.com.desafio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Product implements Serializable {
@@ -71,7 +69,7 @@ public class Product implements Serializable {
 		return Objects.hash(id);
 	}
 
-	@Override
+	@Override		//usado tamb�m p/ testes unit�rios
 	public boolean equals(Object obj) { 
 		if (this == obj)
 			return true;
