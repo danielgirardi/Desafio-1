@@ -1,4 +1,4 @@
-package br.com.desafio;
+package br.com.desafio.entities;
 
 import java.util.Objects;
 
