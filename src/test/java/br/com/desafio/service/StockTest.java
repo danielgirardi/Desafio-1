@@ -1,4 +1,4 @@
-package br.com.desafio;
+package br.com.desafio.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,27 +12,27 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
-import static org.assertj.core.api.Assertions;
 
-class StockTest {
+import static org.assertj.core.api.Assertions.assertThat;
 
-	Stock stock = new Stock();
-	Product product = new Product();
+public class StockTest {
+
+
 	@Test
 	void addProductTest() {
-/*
-	assertThat(product.getName(), contains(
-		hasProperty("name", is("Teclado Gamer")),
-		hasProperty("name", is("Café Solúvel South")));
+		Stock stock = new Stock();
+		stock.addProduct("abcd1234", "Teclado virtual", 1.99, 2, "teste");
 
-
-		Assertions.assertThat(product.getProduct()).hasSize(2).extracting(Product::getName).containsExactlyInAnyOrder("Teclado Gamer", "Café Solúvel South");
-*/
+		assertThat(stock.getProducts()).extracting("name").contains("Teclado virtual");
+		assertThat(stock.getProducts()).extracting("code").contains("abcd1234");
+		assertThat(stock.getProducts()).hasSize(1);
+	}
+}
 	//stock.addProduct();
 
 		// assertEquals(2,1 + 1);
 
-	}
+
 	/*
 	@Test
 	public void addProduct (Integer id, String name, Double price, Integer quantity, String category) {
@@ -131,4 +131,4 @@ class StockTest {
 
 
 
-}
+
