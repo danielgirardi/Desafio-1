@@ -84,7 +84,7 @@ public class Program{
 
 		stock.printProducts();
 		System.out.println();
-
+	//inserir opção de sair a qualquer momento
 		System.out.println("Deseja adicionar um produto da lista acima? s/n");
 		char answer = sc.next().charAt(0);
 		if (answer != 's') return;
@@ -159,7 +159,7 @@ public class Program{
 			char answer = sc.next().charAt(0);
 			if (answer != 's') return;
 
-			System.out.println("Qual o ID do produto que deseja remover? ");
+			System.out.println("Qual o código do produto que deseja remover? ");
 			String code = sc.next();
 			
 			stock.removeProduct(code);
@@ -240,11 +240,11 @@ public class Program{
 			CSVWriter writer = new CSVWriter(outputfile);
 
 			String[] header = { "Código", "Código de barras", "Serie", "Nome", "descrição", "Categoria",
-					"Valor Bruto", "Imposto (%)", "Data de Fabricação", "Data de Validade", "Cor", "Material" };
+					"Valor Bruto", "Imposto (%)", "Data de Fabricação", "Data de Validade", "Cor", "Material", "Quantity" };
 			writer.writeNext(header);
 
 			for (Product product : stock.getProducts()) {
-				String[] productparameters = new String[12];
+				String[] productparameters = new String[13];
 
 				productparameters[0] = String.valueOf(product.getCode());
 				productparameters[1] = String.valueOf(product.getCodigoBarra());
@@ -258,6 +258,7 @@ public class Program{
 				productparameters[9] = (product.getValidationDate());
 				productparameters[10] = (product.getColor());
 				productparameters[11] = (product.getMaterial());
+				productparameters[12] = String.valueOf(product.getQuantity());
 
 				writer.writeNext(productparameters);
 			}

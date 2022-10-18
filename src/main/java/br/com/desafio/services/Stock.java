@@ -122,9 +122,6 @@ public class Stock  {
 			return true;
 		}
 	}
-
-
-
-}	
+}
 	
 		
