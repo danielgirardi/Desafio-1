@@ -30,9 +30,8 @@ public class Stock  {
 	}
 	
 	public void addProductMostruario (String codigo, Long codigoBarra, String serie, String name, String description, String category, Double price, Double tax, String manufacturingDate, String validationDate, String color, String material) {
-		ProductMostruario productMostruario = 
-				new ProductMostruario(codigo, codigoBarra, serie, description, tax, manufacturingDate, validationDate, 
-						color, material, name, price, category);
+		ProductMostruario productMostruario = new ProductMostruario(codigo, codigoBarra, serie, description, tax, manufacturingDate,
+				validationDate, color, material, name, price, category);
 				
 		productsMostruario.add(productMostruario);
 	}

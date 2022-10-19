@@ -240,11 +240,11 @@ public class Program{
 			CSVWriter writer = new CSVWriter(outputfile);
 
 			String[] header = { "Código", "Código de barras", "Serie", "Nome", "descrição", "Categoria",
-					"Valor Bruto", "Imposto (%)", "Data de Fabricação", "Data de Validade", "Cor", "Material" };
+					"Valor Bruto", "Imposto (%)", "Data de Fabricação", "Data de Validade", "Cor", "Material", "Quantity" };
 			writer.writeNext(header);
 
 			for (Product product : stock.getProducts()) {
-				String[] productparameters = new String[12];
+				String[] productparameters = new String[13];
 
 				productparameters[0] = String.valueOf(product.getCode());
 				productparameters[1] = String.valueOf(product.getCodigoBarra());
@@ -258,6 +258,7 @@ public class Program{
 				productparameters[9] = (product.getValidationDate());
 				productparameters[10] = (product.getColor());
 				productparameters[11] = (product.getMaterial());
+				productparameters[12] = String.valueOf(product.getQuantity());
 
 				writer.writeNext(productparameters);
 			}
