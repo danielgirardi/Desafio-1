@@ -84,7 +84,7 @@ public class Program{
 
 		stock.printProducts();
 		System.out.println();
-
+	//inserir opção de sair a qualquer momento
 		System.out.println("Deseja adicionar um produto da lista acima? s/n");
 		char answer = sc.next().charAt(0);
 		if (answer != 's') return;
@@ -159,7 +159,7 @@ public class Program{
 			char answer = sc.next().charAt(0);
 			if (answer != 's') return;
 
-			System.out.println("Qual o ID do produto que deseja remover? ");
+			System.out.println("Qual o código do produto que deseja remover? ");
 			String code = sc.next();
 			
 			stock.removeProduct(code);
