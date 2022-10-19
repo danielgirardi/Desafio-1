@@ -33,6 +33,9 @@ public class StockTest {
 		assertThat(stock.getProducts()).hasSize(1);
 	}
 /*
+
+
+
 	@Test
 	void editProductTest() {
 		Stock stock = new Stock();
