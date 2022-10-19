@@ -1,4 +1,4 @@
-package br.com.desafio.service;
+/*package br.com.desafio.service;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +32,15 @@ public class StockTest {
 		assertThat(stock.getProducts()).extracting("category").contains("teste");
 		assertThat(stock.getProducts()).hasSize(1);
 	}
-/*
+}
+
+	@Test
+	void removeProduct(){
+
+
+	}
+
+
 
 
 
@@ -47,7 +55,7 @@ public class StockTest {
 		assertThat(stock.getProducts()).extracting("quantity").contains(2);
 		assertThat(stock.getProducts()).extracting("category").contains("teste2");
 
-/*
+
 	@Test
 	void addProductTest2() {
 
@@ -56,15 +64,14 @@ public class StockTest {
 
 		Add add = new Add(1L);
 	}
-*/
-}
+
 
 	//stock.addProduct();
 
 
 
 
-	/*
+
 	@Test
 	public void addProduct (Integer id, String name, Double price, Integer quantity, String category) {
 
