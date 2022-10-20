@@ -1,4 +1,4 @@
-/*package br.com.desafio.service;
+package br.com.desafio.service;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,15 +13,12 @@ import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StockTest {
 
-	private Stock stock = mock(Stock.class);    //feito por mim
-
 	@Test
-	void addProductTest() {
+	void addProductWithSucessTest() {
 		Stock stock = new Stock();
 		stock.addProduct("abcd1234", "Teclado Gamer", 4.99, 2, "teste");
 
@@ -32,141 +29,160 @@ public class StockTest {
 		assertThat(stock.getProducts()).extracting("category").contains("teste");
 		assertThat(stock.getProducts()).hasSize(1);
 	}
-}
-
 	@Test
-	void removeProduct(){
-
-
-	}
-
-
-
-
-
-	@Test
-	void editProductTest() {
+	void addProductNotSucessTest() {
 		Stock stock = new Stock();
-		assertThat(stock.removeProduct()).contains(nullValue());
-		stock.addProduct("1234abcd", "mesa", 90.0, 2, "teste2");
-		assertThat(stock.getProducts()).extracting("code").contains("1234abcd");
-		assertThat(stock.getProducts()).extracting("name").contains("mesa");
-		assertThat(stock.getProducts()).extracting("price").contains(90.0);
-		assertThat(stock.getProducts()).extracting("quantity").contains(2);
+		stock.addProduct("abcd1234", "Teclado Gamer", 4.99, 2, "teste");
+
+		assertThat(stock.getProducts()).extracting("name").contains("vaso");
+		assertThat(stock.getProducts()).extracting("code").contains("rg5454");
+		assertThat(stock.getProducts()).extracting("price").contains(5.99);
+		assertThat(stock.getProducts()).extracting("quantity").contains(3);
 		assertThat(stock.getProducts()).extracting("category").contains("teste2");
-
-
-	@Test
-	void addProductTest2() {
-
-		// when(stock.addProduct(eq(1L))).thenReturn(true); utiliza-se quando necessita de retorno
-		doNothing().when(stock).addProduct();
-
-		Add add = new Add(1L);
+		assertThat(stock.getProducts()).hasSize(1);
 	}
-
-
-	//stock.addProduct();
-
-
-
-
-
 	@Test
-	public void addProduct (Integer id, String name, Double price, Integer quantity, String category) {
+	void removeProductWithSucessTest() {
+		Stock stock = new Stock();
+		stock.addProduct("987asd", "copo", 9.80, 10, "casa");
+		assertThat(stock.getProducts()).hasSize(1);
 
-		Assert.assertTrue(true);  //procurar n�o usar assertivas com nega��o, melhor � criar as duas
-		Assert.assertTrue(false);
+		stock.removeProduct("987asd");
 
-		Assert.assertEquals(0.51234, 0.512, 0.001);
-		//assertivas com double ou monet�rio usar (0.00 1) + tipo Integer ou converte int p/ Integer.valueof();
-		// Para comparar String usa-se Assert.assertEquals("bola", "bola); OBS: cuidar se as letras tem ma�sculo ou caracteres especiais
-		//String com letras e caracteres diferentes p/ comprar usa-se Assert.asserttRUE("bola".EQUALSiGNOREcASE("bola"));
-
-		//cenario
-
-
-		//acao
-
-
-		//verificacao
-		Assert.assertTrue()
+		assertThat(stock.getProducts()).hasSize(0);
 	}
-
-	@Rule
-	public ErrorCollector error = new ErrorColletctor();
-
-	//verica��o do ErrosColletctor �: @Rule + error.checkThat(locacao.getValor(), is(equalTo(6.0)));
-
 	@Test
-	public void addProductMostruari() {
-		//cenario
+	void removeProductNotSucessTest() {
 
+		Stock stock = new Stock();
+		stock.addProduct("987asd", "copo", 9.80, 10, "casa");
+		assertThat(stock.getProducts()).hasSize(1);
 
-		//acao
+		stock.removeProduct("sfdgr57");
 
-
-		//verificacao
+		assertThat(stock.getProducts()).hasSize(1);
 	}
-
 	@Test
-	public void editProduct() {
-		//cenario
+	void editProductWithSucessTest() {
+		Stock stock = new Stock();
+		stock.addProduct("qwer1234", "jaqueta", 15.99, 23, "teste2");
 
+		stock.editProducts("qwer1234", "mesa", 149.99, 5, "teste3");
 
-		//acao
-
-
-		//verificacao
+		assertThat(stock.getProducts()).extracting("name").contains("mesa");
+		assertThat(stock.getProducts()).extracting("code").contains("qwer1234");
+		assertThat(stock.getProducts()).extracting("price").contains(149.99);
+		assertThat(stock.getProducts()).extracting("quantity").contains(5);
+		assertThat(stock.getProducts()).extracting("category").contains("teste3");
+		assertThat(stock.getProducts()).extracting("name").doesNotContain("jaqueta");
+		assertThat(stock.getProducts()).extracting("price").doesNotContain(15.99);
+		assertThat(stock.getProducts()).extracting("quantity").doesNotContain(5);
+		assertThat(stock.getProducts()).extracting("category").doesNotContain("teste2");
+		assertThat(stock.getProducts()).hasSize(1);
 	}
-
 	@Test
-	public void removeProduct() {
-		//cenario
+	void editProductNotSucessTest() {
+		Stock stock = new Stock();
+		stock.addProduct("qwer1234", "jaqueta", 15.99, 23, "teste2");
 
+		stock.editProducts("hds3h", "mesa", 149.99, 5, "teste3");
 
-		//acao
-
-
-		//verificacao
+		assertThat(stock.getProducts()).extracting("code").contains("qwer1234");
+		assertThat(stock.getProducts()).extracting("name").contains("jaqueta");
+		assertThat(stock.getProducts()).extracting("price").contains(15.99);
+		assertThat(stock.getProducts()).extracting("quantity").contains(23);
+		assertThat(stock.getProducts()).extracting("category").contains("teste2");
+		assertThat(stock.getProducts()).extracting("name").doesNotContain("mesa");
+		assertThat(stock.getProducts()).extracting("price").doesNotContain(22.99);
+		assertThat(stock.getProducts()).extracting("quantity").doesNotContain(6);
+		assertThat(stock.getProducts()).extracting("category").doesNotContain("teste3");
+		assertThat(stock.getProducts()).hasSize(1);
 	}
-
 	@Test
-	public void printProducts () {
-		//cenario
-
-
-		//acao
-
-
-		//verificacao
+	void totalPriceWithSucessTest() {
+		Stock stock = new Stock();
+		assertEquals(stock.totalPrice(120.99, 35), 236.84);
 	}
-
 	@Test
-	public void addProductfromMostruario() {
-		//cenario
-
-
-		//acao
-
-
-		//verificacao
+	void totalPriceNotSucessTest() {
+		Stock stock = new Stock();
+		assertEquals(stock.totalPrice(99.0, 20), 153.50);
 	}
-
 	@Test
-	public void (double price, double tax) {
-		//cenario
+	void addProductWithSucessTest2() {
+		Stock stock = new Stock();
+		stock.addProduct("abcd1234", "notebook", 5.000, 4, "teste4", Long.valueOf(62993636), "4/2019",
+				"computador portatil", 35.0, "n/a", "n/a", "preto", "plastico");
 
-
-		//acao
-
-
-		//verificacao
+		assertThat(stock.getProducts()).extracting("code").contains("abcd1234");
+		assertThat(stock.getProducts()).extracting("name").contains("notebook");
+		assertThat(stock.getProducts()).extracting("price").contains(5.000);
+		assertThat(stock.getProducts()).extracting("quantity").contains(4);
+		assertThat(stock.getProducts()).extracting("category").contains("teste4");
+		assertThat(stock.getProducts()).extracting("codigoBarra").contains(Long.valueOf(62993636));
+		assertThat(stock.getProducts()).extracting("serie").contains("4/2019");
+		assertThat(stock.getProducts()).extracting("description").contains("computador portatil");
+		assertThat(stock.getProducts()).extracting("tax").contains(35.0);
+		assertThat(stock.getProducts()).extracting("manufacturingDate").contains("n/a");
+		assertThat(stock.getProducts()).extracting("validationDate").contains("n/a");
+		assertThat(stock.getProducts()).extracting("color").contains("preto");
+		assertThat(stock.getProducts()).extracting("material").contains("plastico");
+		assertThat(stock.getProducts()).hasSize(1);
 	}
+	@Test
+	void addProductNotSucessTest2() {
+		Stock stock = new Stock();
+		stock.addProduct("abcd1234", "notebook", 5.000, 4, "teste4", Long.valueOf(6299363), "4/2019",
+				"computador portatil", 35.0, "n/a", "n/a", "preto", "plastico");
 
+		assertThat(stock.getProducts()).extracting("code").contains("rurtu654542");
+		assertThat(stock.getProducts()).extracting("name").contains("lata");
+		assertThat(stock.getProducts()).extracting("price").contains(39.0);
+		assertThat(stock.getProducts()).extracting("quantity").contains(10);
+		assertThat(stock.getProducts()).extracting("category").contains("teste5");
+		assertThat(stock.getProducts()).extracting("codigoBarra").contains(Long.valueOf(5469879));
+		assertThat(stock.getProducts()).extracting("serie").contains("5/2020");
+		assertThat(stock.getProducts()).extracting("description").contains("casa");
+		assertThat(stock.getProducts()).extracting("tax").contains(50.0);
+		assertThat(stock.getProducts()).extracting("manufacturingDate").contains("10/10/2020");
+		assertThat(stock.getProducts()).extracting("validationDate").contains("09/08/2030");
+		assertThat(stock.getProducts()).extracting("color").contains("transparente");
+		assertThat(stock.getProducts()).extracting("material").contains("vidro");
+		assertThat(stock.getProducts()).hasSize(1);
+	}
+	@Test
+	void addProductMostruarioWithSucessTest() {
+		Stock stock = new Stock();
+		stock.addProductMostruario("4653rhhj", Long.valueOf(4645313), "1/2020", "ferro", "teste4", "casa",
+				68.90, 1.5, "27/02/2020", "n/a", "azul", "plastico");
+
+		assertThat(stock.getProductMostruario()).extracting("codigo").contains("4653rhhj");
+		assertThat(stock.getProductMostruario()).extracting("codigoBarra").contains(Long.valueOf(4645313));
+		assertThat(stock.getProductMostruario()).extracting("serie").contains("1/2020");
+		assertThat(stock.getProductMostruario()).extracting("name").contains("ferro");
+		assertThat(stock.getProductMostruario()).extracting("description").contains("teste4");
+		assertThat(stock.getProductMostruario()).extracting("category").contains("casa");
+		assertThat(stock.getProductMostruario()).extracting("price").contains(68.90);
+		assertThat(stock.getProductMostruario()).extracting("tax").contains(1.5);
+		assertThat(stock.getProductMostruario()).extracting("manufacturingDate").contains("27/02/2020");
+		assertThat(stock.getProductMostruario()).extracting("validationDate").contains("n/a");
+		assertThat(stock.getProductMostruario()).extracting("color").contains("azul");
+		assertThat(stock.getProductMostruario()).extracting("material").contains("plastico");
+		assertThat(stock.getProductMostruario()).hasSize(1);
+	}
+	@Test
+	void isProductInStockWithSucessTest() {
+
+		Stock stock = new Stock();
+		stock.addProduct("ktr4557", "carregador", 19.99, 7, "eletronico");
+		assertTrue(stock.isProductInStock("ktr4557"));
+	}
+	@Test
+	void isProductInStockNotSucessTest() {
+
+		Stock stock = new Stock();
+		stock.addProduct("ktr4557", "carregador", 19.99, 7, "eletronico");
+		assertFalse(stock.isProductInStock("rhrjt5465"));
+	}
 }
-	*/
-
-
-
 

@@ -35,7 +35,7 @@ public class Stock  {
 				
 		productsMostruario.add(productMostruario);
 	}
-	
+
 	public void editProducts (String code, String name, Double price, Integer quantity, String category) {
 		removeProduct(code);
 		addProduct(code, name, price, quantity, category);
@@ -95,7 +95,7 @@ public class Stock  {
 		
 		System.out.println("Os produtos foram importados com sucesso para o estoque!");
 	}
-	
+	//recebe por parametro preço e taxa e calcula o valor total aplicando uma taxa de 0,45% em cima
 	public double totalPrice (double price, double tax) { 
 		
 		double soma = (price + (price * tax / 100)) * 1.45;   
@@ -107,6 +107,8 @@ public class Stock  {
 	public List<Product> getProducts() { 
 		return products;
 	}
+
+	public List<ProductMostruario> getProductMostruario () { return productsMostruario;}
 
 	public boolean isProductInStock(String code){
 		Product product = new Product();
