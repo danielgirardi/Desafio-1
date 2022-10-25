@@ -22,8 +22,8 @@ public class StockTest {
 		Stock stock = new Stock();
 		stock.addProduct("abcd1234", "Teclado Gamer", 4.99, 2, "teste");
 
-		assertThat(stock.getProducts()).extracting("name").contains("Teclado Gamer");
 		assertThat(stock.getProducts()).extracting("code").contains("abcd1234");
+		assertThat(stock.getProducts()).extracting("name").contains("Teclado Gamer");
 		assertThat(stock.getProducts()).extracting("price").contains(4.99);
 		assertThat(stock.getProducts()).extracting("quantity").contains(2);
 		assertThat(stock.getProducts()).extracting("category").contains("teste");

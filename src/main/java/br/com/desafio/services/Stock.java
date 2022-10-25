@@ -95,8 +95,8 @@ public class Stock  {
 		
 		System.out.println("Os produtos foram importados com sucesso para o estoque!");
 	}
-	//recebe por parametro preço e taxa e calcula o valor total aplicando uma taxa de 0,45% em cima
-	public double totalPrice (double price, double tax) { 
+
+	public double totalPrice (double price, double tax) {
 		
 		double soma = (price + (price * tax / 100)) * 1.45;   
 		double monetaryValue = new BigDecimal(String.valueOf(soma)).setScale(2, RoundingMode.HALF_UP).doubleValue();

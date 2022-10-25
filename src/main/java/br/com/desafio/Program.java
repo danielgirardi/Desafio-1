@@ -1,10 +1,6 @@
 package br.com.desafio;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -21,7 +17,6 @@ import com.opencsv.CSVWriter;
 public class Program{
 	
 	private Stock stock = new Stock();
-
 
 	public static void main(String[] args) throws IOException {
 		Locale.setDefault(Locale.US);	
@@ -169,8 +164,9 @@ public class Program{
 	public void readDocument() throws IOException {
 		
 		Locale.setDefault(Locale.US);
-		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.csv";
-		
+
+		String path = this.getClass().getClassLoader().getResource("estoque.csv").getPath();
+
 		FileReader fileReader = new FileReader(path);
 		CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
 
@@ -200,9 +196,9 @@ public class Program{
 	public void readDocumentMostruario() throws IOException {
 		
 		Locale.setDefault(Locale.US);
-		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\mostruario_fabrica.csv";
 
-		Reader reader = Files.newBufferedReader(Paths.get(path));
+		String path = this.getClass().getClassLoader().getResource("mostruario_fabrica.csv").getPath();
+		Reader reader = new BufferedReader (new FileReader(path));
 		CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
 
 		List<String[]> mostruarioList = csvReader.readAll();
@@ -230,8 +226,7 @@ public class Program{
 	
 	public void writeDocument() { 
 
-		String path = "C:\\Daniel Girardi\\Projetos\\Desafio 1\\estoque.csv";
-
+		String path = this.getClass().getClassLoader().getResource("estoque.csv").getPath();
 		File file = new File(path);
 		try {
 			
